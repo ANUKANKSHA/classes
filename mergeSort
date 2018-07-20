@@ -1,18 +1,12 @@
 class mergeSort
 {
     int array_size;
-    int *arr;
 public:
-    mergeSort(int x,int a[])
+    mergeSort(int x)
     {
         array_size=x;
-        arr=new int[array_size];
-        for(int i=0;i<array_size;i++)
-        {
-            arr[i]=a[i];
-        }
     }
-    merge(int low,int mid,int high)
+    merge(int arr[],int low,int mid,int high)
     {
         int l[mid-low+1];
         int r[high-mid];
@@ -48,17 +42,17 @@ public:
                 k++;
         }
     }
-    void partition(int low,int high)
+    void partition(int arr[],int low,int high)
     {
         if(low<high)
         {
             int mid=(low+high)/2;
-            partition(low,mid);
-            partition(mid+1,high);
-            merge(low,mid,high);
+            partition(arr,low,mid);
+            partition(arr,mid+1,high);
+            merge(arr,low,mid,high);
         }
     }
-    void display()
+    void display(int arr[])
     {
         cout<<"the sorted array is"<<endl;
         for(int i=0;i<array_size;i++)
