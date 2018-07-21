@@ -1,0 +1,56 @@
+class graph
+{
+    int nodes;
+    vector<vector<bool> > G;
+    int source;
+public:
+    graph()
+    {
+        int x,y;
+        cin>>nodes;
+        G.resize(nodes+1);
+        for(int i=1;i<=nodes;i++)
+        G[i].resize(nodes+1);
+        for(int i=1;i<=nodes;i++)
+        {
+            for(int j=1;j<=nodes;j++)
+                G[i][j]=0;
+        }
+        for(int i=0;i<nodes-1;i++)
+        {
+            cin>>x>>y;
+            G[x][y]=1;
+            G[y][x]=1;
+        }
+        cin>>source;
+    }
+
+    void bfs()
+    {
+        queue<int> q;
+        int level=0;
+        bool visited[nodes+1]={0};
+        q.push(source);
+        while(1)
+        {
+           int len=q.size();
+           for(int i=0;i<len;i++)
+           {
+               int p=q.front();
+               q.pop();
+               visited[p]=1;
+               cout<<p<<" ";
+               for(int j=1;j<=nodes;j++)
+               {
+                   if(G[p][j]==1 && visited[j]==0)
+                   q.push(j);
+               }
+           }
+           level++;
+           cout<<endl;
+           if(q.empty())
+               break;
+        }
+    }
+
+};
