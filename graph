@@ -1,3 +1,8 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
 class graph
 {
     int nodes;
@@ -16,7 +21,7 @@ public:
             for(int j=1;j<=nodes;j++)
                 G[i][j]=0;
         }
-        for(int i=0;i<nodes-1;i++)
+        for(int i=0;i<nodes;i++)
         {
             cin>>x>>y;
             G[x][y]=1;
@@ -53,6 +58,15 @@ public:
         }
     }
     
+    void initialise_dfs_recursive()
+    {
+        int visited[nodes+1]={0};
+        stack<int> store;
+        store.push(source);
+        visited[source]=1;
+        dfs_recursive(visited,store);
+    }
+    
    void dfs_recursive(int visited[],stack<int> store)
     {
         if(!store.empty())
@@ -77,3 +91,6 @@ public:
 
 
 };
+
+
+
