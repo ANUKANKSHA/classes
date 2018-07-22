@@ -52,5 +52,28 @@ public:
                break;
         }
     }
+    
+   void dfs_recursive(int visited[],stack<int> store)
+    {
+        if(!store.empty())
+        {
+            int p=store.top();
+            store.pop();
+            cout<<p<<" ";
+            for(int i=1;i<=nodes;i++)
+            {
+                if(G[p][i]==1 && visited[i]==0)
+                {
+                    store.push(i);
+                    visited[i]=1;
+                    dfs_recursive(visited,store);
+                }
+            }
+            
+        }
+        
+        
+    }
+
 
 };
