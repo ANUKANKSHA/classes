@@ -1,16 +1,18 @@
-class selectionSort
+class insertionSort
 {
     int array_size;
     int *arr;
 public:
-    selectionSort(int x,int a[])
+    insertionSort()
     {
-        array_size=x;
+        cin>>array_size;
         arr=new int[array_size];
         for(int i=0;i<array_size;i++)
         {
-            arr[i]=a[i];
+            cin>>arr[i];
         }
+        sort();
+        display();
     }
 
     void sort()
