@@ -1,0 +1,56 @@
+class quickSort{
+    int N;
+    int *arr;
+public:
+    quickSort()
+    {
+        cin>>N;
+        arr=new int[N];
+        for(int i=0;i<N;i++)
+            cin>>arr[i];
+        sort_(0,N-1);
+    }
+    //rand_partition function from hackerearth
+    int rand_partition (  int start , int end ) {
+     int random = start + rand( )%(end-start +1 ) ;
+     int temp=arr[random];
+     arr[random]=temp ;
+     return partition(start ,end) ;
+}
+    int partition(int start_,int end_)
+    {
+        int pivot=arr[start_];
+        int i=start_+1;
+        int j=start_+1;
+        for(;j<=end_;j++)
+        {
+            if(arr[j]<pivot)
+            {
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+                i++;
+            }
+        }
+        int temp=arr[start_];
+        arr[start_]=arr[i-1];
+        arr[i-1]=temp;
+        return i-1;
+    }
+
+    void sort_(int start_,int end_)
+    {
+        if(start_<end_)
+        {
+            int pivot=rand_partition(start_,end_);
+            sort_(start_,pivot-1);
+            sort_(pivot+1,end_);
+        }
+    }
+    void display()
+    {
+        for(int i=0;i<N;i++)
+            cout<<arr[i]<<" ";
+    }
+
+};
